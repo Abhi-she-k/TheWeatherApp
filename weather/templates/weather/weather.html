@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+    <style>
+    </style>
+</head>
+
+<body>
+
+    <section class="hero is-info">
+        <div class="hero-body">
+            <div class="container">
+                 <h1 class="title">
+                        TheWeatherApp
+                </h1>
+            <h2 class="subtitle">
+                    Created by Abhishek
+            </h2>
+
+            </div>
+        </div>
+    </section>
+
+    <div>
+    <a href="https://linktr.ee/A.bhishe_k" class="button is-info is-outlined button is-rounded buttons is-centered" style="margin-top: 3.5px" >Socials </a>
+    </div>
+
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+
+                <div class="column is-offset-4 is-4">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                {{form.name}}
+                            </div>
+
+                            <div class="control">
+                                <button type = 'submit' class="button is-info">
+                                    Add City
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    {%if message%}
+                        <div class="notification {{messageClass}}" style="margin-top: 5px" >
+                            <button class="delete" onclick="this.parentElement.style.display='none'"></button>
+                            {{message}}
+                        </div>
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    {%for cityWeather in weatherData%}
+                    <div class="box">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-50x50">
+                                    <img src="http://openweathermap.org/img/w/{{cityWeather.icon}}.png" alt="Image">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <span class="title">{{cityWeather.city}}</span>
+                                        <br>
+                                        <span class="subtitle">{{cityWeather.temp}}°C</span>
+                                        <br> {{cityWeather.des}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class = "media-right">
+                                <a href = "{% url 'deleteCity' cityWeather.city%}">
+                                    <button class ="delete"></button>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <footer class="footer">
+    </footer>
+    </footer>
+</body>
+</html>
+
