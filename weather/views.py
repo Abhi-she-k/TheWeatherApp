@@ -58,6 +58,8 @@ def index(request: object):
         }
         weatherData.append(cityWeather)
 
+        print(r)
+
 
 
     context = {
