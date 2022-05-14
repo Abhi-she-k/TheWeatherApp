@@ -1,5 +1,5 @@
 # TheWeatherApp
-Created a weather app that gives accurate weather stats for cities across the world using the weathermap api
+Created a weather app that gives accurate weather stats for cities across the world using the openweathermap api
 (https://openweathermap.org/api)
 
 HomePage:
